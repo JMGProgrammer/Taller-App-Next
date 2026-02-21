@@ -1,8 +1,6 @@
 "use client"
-import Image from "next/image";
 import { useState } from "react";
-import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { BuildingOffice2Icon, PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 
 export default function Home() {
   const navigation = [
@@ -14,158 +12,132 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="bg-gray-900">
-      <header className="absolute inset-x-0 top-0 z-50">
-        <nav
-          aria-label="Global"
-          className="flex items-center justify-between p-6 lg:px-8"
-        >
-          <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                alt=""
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                className="h-8 w-auto"
-              />
-            </a>
-          </div>
-          <div className="flex lg:hidden">
-            <button
-              type="button"
-              onClick={() => setMobileMenuOpen(true)}
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-200"
+    <section className="relative min-h-screen bg-[#0d1117] flex items-center overflow-hidden">
+      {/* Grid pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "linear-gradient(#4f6aff 1px, transparent 1px), linear-gradient(to right, #4f6aff 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+      />
+
+      {/* Radial glow left */}
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#1e3a5f] opacity-30 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* ── LEFT PANEL ── */}
+        <div className="text-white space-y-8">
+          <div>
+            <h2
+              className="text-5xl font-extrabold tracking-tight leading-tight mb-4"
+              style={{ fontFamily: "'Georgia', serif" }}
             >
-              <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="size-6" />
-            </button>
+              Get in touch
+            </h2>
+            <p className="text-[#8da0b8] text-base leading-relaxed max-w-sm">
+              Proin volutpat consequat porttitor cras nullam gravida at. Orci
+              molestie a eu arcu. Sed ut tincidunt integer elementum id sem. Arcu
+              sed malesuada et magna.
+            </p>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-sm/6 font-semibold text-white"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm/6 font-semibold text-white">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
-        </nav>
-        <Dialog
-          open={mobileMenuOpen}
-          onClose={setMobileMenuOpen}
-          className="lg:hidden"
-        >
-          <div className="fixed inset-0 z-50" />
-          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-100/10">
-            <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img
-                  alt=""
-                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                  className="h-8 w-auto"
+
+          <ul className="space-y-5 text-[#c5d3e0]">
+            <li className="flex items-start gap-3">
+              <BuildingOffice2Icon className="w-5 h-5 mt-0.5 text-[#4f6aff] shrink-0" />
+              <span className="text-sm leading-relaxed">
+                545 Mavis Island
+                <br />
+                Chicago, IL 99191
+              </span>
+            </li>
+            <li className="flex items-center gap-3">
+              <PhoneIcon className="w-5 h-5 text-[#4f6aff] shrink-0" />
+              <span className="text-sm">+1 (555) 234-5678</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <EnvelopeIcon className="w-5 h-5 text-[#4f6aff] shrink-0" />
+              <span className="text-sm">hello@example.com</span>
+            </li>
+          </ul>
+        </div>
+
+        {/* ── RIGHT PANEL – FORM ── */}
+        <div className="bg-[#111827]/80 border border-white/[0.06] rounded-2xl p-8 backdrop-blur-sm shadow-2xl">
+          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+            {/* First / Last name */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-semibold text-[#94a3b8] uppercase tracking-widest">
+                  First name
+                </label>
+                <input
+                  type="text"
+                  placeholder=""
+                  className="bg-[#1a2332] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white placeholder-[#4a5568] focus:outline-none focus:ring-2 focus:ring-[#4f6aff]/60 transition"
                 />
-              </a>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="-m-2.5 rounded-md p-2.5 text-gray-200"
-              >
-                <span className="sr-only">Close menu</span>
-                <XMarkIcon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-            <div className="mt-6 flow-root">
-              <div className="-my-6 divide-y divide-white/10">
-                <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-white hover:bg-white/5"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-                <div className="py-6">
-                  <a
-                    href="#"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-white hover:bg-white/5"
-                  >
-                    Log in
-                  </a>
-                </div>
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-semibold text-[#94a3b8] uppercase tracking-widest">
+                  Last name
+                </label>
+                <input
+                  type="text"
+                  placeholder=""
+                  className="bg-[#1a2332] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white placeholder-[#4a5568] focus:outline-none focus:ring-2 focus:ring-[#4f6aff]/60 transition"
+                />
               </div>
             </div>
-          </DialogPanel>
-        </Dialog>
-      </header>
 
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-        >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-288.75"
-          />
-        </div>
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-          <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-              Announcing our next round of funding.{" "}
-              <a href="#" className="font-semibold text-indigo-400">
-                <span aria-hidden="true" className="absolute inset-0" />
-                Read more <span aria-hidden="true">&rarr;</span>
-              </a>
+            {/* Email */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold text-[#94a3b8] uppercase tracking-widest">
+                Email
+              </label>
+              <input
+                type="email"
+                placeholder=""
+                className="w-full bg-[#1a2332] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white placeholder-[#4a5568] focus:outline-none focus:ring-2 focus:ring-[#4f6aff]/60 transition"
+              />
             </div>
-          </div>
-          <div className="text-center">
-            <h1 className="text-5xl font-semibold tracking-tight text-balance text-white sm:text-7xl">
-              Data to enrich your online business
-            </h1>
-            <p className="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+
+            {/* Phone */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold text-[#94a3b8] uppercase tracking-widest">
+                Phone number
+              </label>
+              <input
+                type="tel"
+                placeholder=""
+                className="w-full bg-[#1a2332] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white placeholder-[#4a5568] focus:outline-none focus:ring-2 focus:ring-[#4f6aff]/60 transition"
+              />
+            </div>
+
+            {/* Message */}
+            <div className="flex flex-col gap-1.5">
+              <label className="text-xs font-semibold text-[#94a3b8] uppercase tracking-widest">
+                Message
+              </label>
+              <textarea
+                rows={5}
+                placeholder=""
+                className="w-full bg-[#1a2332] border border-white/[0.08] rounded-lg px-3 py-2.5 text-sm text-white placeholder-[#4a5568] focus:outline-none focus:ring-2 focus:ring-[#4f6aff]/60 transition resize-none"
+              />
+            </div>
+
+            {/* Submit */}
+            <div className="flex justify-end pt-1">
+              <button
+                type="submit"
+                className="bg-[#4f6aff] hover:bg-[#3d56e8] active:scale-95 transition-all text-white text-sm font-semibold px-6 py-2.5 rounded-lg shadow-lg shadow-[#4f6aff]/30"
               >
-                Get started
-              </a>
-              <a href="#" className="text-sm/6 font-semibold text-white">
-                Learn more <span aria-hidden="true">→</span>
-              </a>
+                Send message
+              </button>
             </div>
-          </div>
-        </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
-        >
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%+3rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-288.75"
-          />
+          </form>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
