@@ -115,7 +115,7 @@ export default function Home() {
             </div>
 
             {/* Agree to policies toggle */}
-            <div className="flex gap-x-4 pt-1">
+            {/* <div className="flex gap-x-4 pt-1">
               <div className="flex h-6 items-center">
                 <div className="group relative inline-flex w-8 shrink-0 rounded-full bg-white/5 p-px inset-ring inset-ring-white/10 outline-offset-2 outline-[#4f6aff] transition-colors duration-200 ease-in-out has-checked:bg-[#4f6aff] has-focus-visible:outline-2">
                   <span className="size-4 rounded-full bg-white shadow-xs ring-1 ring-gray-900/5 transition-transform duration-200 ease-in-out group-has-checked:translate-x-3.5" />
@@ -135,7 +135,7 @@ export default function Home() {
                 </a>
                 .
               </label>
-            </div>
+            </div> */}
 
             {/* Submit */}
             <div className="pt-2">
