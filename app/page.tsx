@@ -1,15 +1,29 @@
-"use client"
+"use client";
 import { useState } from "react";
-import { UserIcon, IdentificationIcon, LockClosedIcon } from "@heroicons/react/24/outline";
+import { register } from "../api/api";
+import {
+  UserIcon,
+  IdentificationIcon,
+  LockClosedIcon,
+} from "@heroicons/react/24/outline";
 
 export default function Home() {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    try {
+      e.preventDefault();
+      const response = await register(username, name, password);
+      console.log("Usuario registrado exitosamente:", response);
+    } catch (error) {
+      console.error("Error registrando usuario:", error);
+    }
+  };
 
   return (
     <div className="isolate relative min-h-screen bg-[#0d1117] px-6 py-24 sm:py-32 lg:px-8 flex items-center justify-center overflow-hidden">
-
       {/* Grid pattern overlay */}
       <div
         aria-hidden="true"
@@ -42,10 +56,12 @@ export default function Home() {
       </div>
 
       <div className="relative z-10 w-full max-w-md">
-
         {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-10">
-          <h2 className="text-4xl font-extrabold tracking-tight text-balance text-white sm:text-5xl" style={{ fontFamily: "'Georgia', serif" }}>
+          <h2
+            className="text-4xl font-extrabold tracking-tight text-balance text-white sm:text-5xl"
+            style={{ fontFamily: "'Georgia', serif" }}
+          >
             Crea tu cuenta
           </h2>
           <p className="mt-2 text-lg/8 text-[#8da0b8]">
@@ -55,11 +71,13 @@ export default function Home() {
 
         {/* Card */}
         <div className="bg-[#111827]/80 border border-white/[0.06] rounded-2xl p-8 backdrop-blur-sm shadow-2xl">
-          <form action="#" method="POST" className="space-y-5">
-
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Username */}
             <div>
-              <label htmlFor="username" className="block text-xs font-semibold text-[#94a3b8] uppercase tracking-widest mb-1.5">
+              <label
+                htmlFor="username"
+                className="block text-xs font-semibold text-[#94a3b8] uppercase tracking-widest mb-1.5"
+              >
                 Username
               </label>
               <div className="relative">
@@ -78,7 +96,10 @@ export default function Home() {
 
             {/* Name */}
             <div>
-              <label htmlFor="first-name" className="block text-xs font-semibold text-[#94a3b8] uppercase tracking-widest mb-1.5">
+              <label
+                htmlFor="first-name"
+                className="block text-xs font-semibold text-[#94a3b8] uppercase tracking-widest mb-1.5"
+              >
                 Name
               </label>
               <div className="relative">
@@ -97,7 +118,10 @@ export default function Home() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-xs font-semibold text-[#94a3b8] uppercase tracking-widest mb-1.5">
+              <label
+                htmlFor="password"
+                className="block text-xs font-semibold text-[#94a3b8] uppercase tracking-widest mb-1.5"
+              >
                 Password
               </label>
               <div className="relative">
@@ -146,10 +170,8 @@ export default function Home() {
                 Register
               </button>
             </div>
-
           </form>
         </div>
-
       </div>
     </div>
   );
