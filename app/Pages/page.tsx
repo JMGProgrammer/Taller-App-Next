@@ -1,11 +1,14 @@
 "use client";
-import { useState } from "react";
-import { register } from "../api/api";
+import { useState, useEffect } from "react";
+import { register } from "../../api/api";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   UserIcon,
   IdentificationIcon,
   LockClosedIcon,
 } from "@heroicons/react/24/outline";
+import router from "next/router";
 
 export default function Home() {
   const [username, setUsername] = useState("");
@@ -17,6 +20,8 @@ export default function Home() {
       e.preventDefault();
       const response = await register(username, name, password);
       console.log("Usuario registrado exitosamente:", response);
+      useRouter().push("/login");
+      // router.push("/login");
     } catch (error) {
       console.error("Error registrando usuario:", error);
     }
@@ -69,6 +74,15 @@ export default function Home() {
           </p>
         </div>
 
+        {/* Link a PokePage */}
+        <div className="text-center mb-6">
+          <Link
+            href="/poke"
+            className="text-[#4f6aff] font-semibold hover:underline"
+          >
+            Ir a PokePage
+          </Link>
+        </div>
         {/* Card */}
         <div className="bg-[#111827]/80 border border-white/[0.06] rounded-2xl p-8 backdrop-blur-sm shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-5">
